@@ -1,7 +1,7 @@
 // variables and constants
 let inputDrive = {x : 0, y : 0};
 const food = new Audio('music/food-eating.mp3');
-const VideoGame = new Audio('music/game-2.mp3')
+const VideoGame = new Audio('music/game-2.mp3');
 // const opening = new Audio('opener.wav');
 const over = new Audio('music/game-over.mp3');
 
@@ -10,9 +10,10 @@ let second = 2;
 
 let snakeArray = [{x : 5, y : 9}];
 let snakeFood = {x : 15, y : 8};
-let box = document.querySelector('#mid');
+let box = document.querySelector('#mid-box');
 let score = 0;
 let previousKey = "";
+let directionBtn = document.getElementsByClassName('direction-btn');
 
 
 // Game functions 
@@ -27,7 +28,6 @@ function main(ctime){
     console.log(ctime);
 
     lastPaintTime = ctime;
-
 
     gameEngine()
 }
@@ -116,33 +116,78 @@ window.requestAnimationFrame(main);
 window.addEventListener("keydown" , value => {
     VideoGame.play();
     //  = {x : 1 , y : 1};
-if((value.key == "ArrowUp" && previousKey == "ArrowDown") || (value.key == "ArrowDown" && previousKey == "ArrowUp")|| (value.key == "ArrowLeft" && previousKey == "ArrowRight") || (value.key == "ArrowRight" && previousKey == "ArrowLeft")){
+    changeDirection(value.key);
+})
+
+for(let i = 0; i < 4; i++){
+    directionBtn[i].addEventListener("touchstart", function() {
+        VideoGame.play();
+        let a = this.getAttribute("id");
+        console.log(a);
+    
+        changeDirection(a);
+        document.querySelector(`#${a} img`).classList.add("effect");
+    })
+
+}
+for(let i = 0; i < 4; i++){
+    directionBtn[i].addEventListener("touchend", function() {
+        let a = this.getAttribute("id");
+        document.querySelector(`#${a} img`).classList.remove("effect");
+    })
+
+}
+
+// directionBtn[0].addEventListener("mousedown", () => {
+//     VideoGame.play();
+
+//     changeDirection("ArrowUp");
+//     document.querySelector('#up img').classList.add("effect");
+// })
+// directionBtn[1].addEventListener("mousedown", () => {
+//     VideoGame.play();
+
+//     changeDirection("ArrowDown");
+// })
+// directionBtn[2].addEventListener("mousedown", () => {
+//     VideoGame.play();
+
+//     changeDirection("ArrowLeft");
+// })
+// directionBtn[3].addEventListener("mousedown", () => {
+//     VideoGame.play();
+
+//     changeDirection("ArrowRight");
+// })
+
+function changeDirection(newKey){
+    if((newKey == "ArrowUp" && previousKey == "ArrowDown") || (newKey == "ArrowDown" && previousKey == "ArrowUp")|| (newKey == "ArrowLeft" && previousKey == "ArrowRight") || (newKey == "ArrowRight" && previousKey == "ArrowLeft")){
     
 
-} else{
-    previousKey = value.key;
-    switch(value.key){
-        case "ArrowUp" :
-            inputDrive.x = 0;
-            inputDrive.y = -1;
-            break;
-
-        case "ArrowDown" :
-            inputDrive.x = 0;
-            inputDrive.y = 1;
-            break;
-
-        case "ArrowLeft" :
-            inputDrive.x = -1;
-            inputDrive.y = 0;
-            break;
-        case "ArrowRight" :
-            inputDrive.x = 1;
-            inputDrive.y = 0;
-            break;
-         default :
-             break; 
-                 
-        }
-    }    
-})
+    } else{
+        previousKey = newKey;
+        switch(newKey){
+            case "ArrowUp" :
+                inputDrive.x = 0;
+                inputDrive.y = -1;
+                break;
+    
+            case "ArrowDown" :
+                inputDrive.x = 0;
+                inputDrive.y = 1;
+                break;
+    
+            case "ArrowLeft" :
+                inputDrive.x = -1;
+                inputDrive.y = 0;
+                break;
+            case "ArrowRight" :
+                inputDrive.x = 1;
+                inputDrive.y = 0;
+                break;
+             default :
+                 break; 
+                     
+            }
+        } 
+}

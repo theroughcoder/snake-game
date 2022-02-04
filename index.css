@@ -4,7 +4,7 @@
 }
 body{
     background-color :  rgb(181, 240, 93);
-
+     height: 100vh;
 }
 
 #container {
@@ -17,6 +17,7 @@ body{
     background-position-x: 70vw;
     background-position-y: 15vw;
     background-size: 25vw;
+    height: 100vh;
     
 }
 
@@ -50,7 +51,7 @@ h1 {
     border-radius: 20px;
 
 }
-#mid{
+#mid-box{
     
     border: 10px solid black;
    
@@ -61,6 +62,9 @@ h1 {
     grid-template-rows: repeat(18, 1fr);
     grid-template-columns: repeat(18, 1fr);
 
+}
+#screen-btn-container{
+    display: none;
 }
 
 .head{
@@ -81,3 +85,88 @@ h1 {
 
 
 
+@media screen and (max-width:500px) {
+    #box{
+        padding-top: 80px;
+
+    }
+    #left-box {
+      width: 250px;
+      height: 100px;
+      line-height: 30px;
+
+    }
+    #mid-box {
+      width: 250px;
+      height: 250px;
+      
+
+    }
+    #right-box {
+    margin-top: 4vh;
+      width: 250px;
+      height: 150px;
+    
+    }
+    #screen-btn-container{
+        display: block;
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        box-sizing: border-box;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        grid-template-rows: repeat(3, 3fr);
+    }
+    .direction-btn img{
+        width: 100%;
+         transition: transform .2s;
+    }
+    .effect {
+        transform: scale(.8);
+
+    }
+
+    #ArrowUp{
+        width: 100%;
+        height: 100%;
+        grid-row-start: 1;
+        grid-column-start: 2;
+    }
+    #ArrowDown{
+        width: 100%;
+        height: 100%;
+        grid-row-start: 3;
+        grid-column-start: 2;
+    }
+    #ArrowLeft{
+        width: 100%;
+        height: 100%;
+        grid-row-start: 2;
+        grid-column-start: 1;
+    }
+    #ArrowRight{
+        width: 100%;
+        height: 100%;
+        grid-row-start: 2;
+        grid-column-start: 3;
+    }
+
+
+    h1 {
+         font-size: 10vw;
+        padding-bottom: 2%;
+    }
+
+    #score{
+    
+        border: 10px solid black;
+        margin:0%;
+        width: 55%;
+        background-color: rgb(252, 247, 247);
+        font-size: 25px;
+        border-radius: 20px;
+        
+    }
+}
